@@ -1,0 +1,76 @@
+django-admin startproject projeto_cad_usuarios
+
+cd .\projeto_cad_usuarios\
+
+ls
+
+(confirme que está dentro da pasta manage.py)
+
+django-admin startapp app_cad_usuarios
+
+(startado projeto e app, agora vamos criar as views)
+
+----------------------------settings.py
+INSTALLED_APPS =[
+'app_cad_usuarios']
+configuramos as rotas 
+----------------------------------urls.py
+from app_cad_usuarios import views
+
+urlpatterns = [
+#rota, view responsável, nome de referência ]
+path('', views.home, name='home'),
+
+-------------------------------- views.py
+
+def home(request):
+	return render(request, 'usuarios/home.html')
+
+--------------------------------- bootstrap 5 e puxar template
+-------------------------------- navbar
+
+---------- rodar o app
+python .\manage.py runserver
+
+----------- slqllite
+python .\manage.py makemigrations
+python .\manage.py migrate
+
+extension: sqllite viewer
+
+python .\manage.py makemigrations
+-----------------------------------------
+from .models import usuario
+
+novo_usuario = Usuario()
+novo_usuario.nome= request.POST.get('nome')
+novo_usuario.email = request.POST.get('email')
+novo_usuario.senha= request.POST.get('senha')
+novo_usuario.save()
+
+usuarios = {
+'usuarios': Usuario.objects.all()
+}
+
+return render(request, 'usuarios/usuarios.html', usuarios)
+
+
+class="table table-bordered table-striped"
+
+{% block conteudo %}
+{% endblock %}
+
+{% extends 'usuarios/base.html' %}
+---------------------------------------user adm
+python manage.py createsuperuser
+
+--------------------------------painel adm
+from django.contrib import admin
+from .models import TCC
+
+admin.site.register(TCC)
+----------------------------------------
+listar, criar, editar e excluir projetos de TCC.
+
+---------------------arquivos estaticos
+python manage.py collectstatic

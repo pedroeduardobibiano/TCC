@@ -1,0 +1,25 @@
+{% extends 'usuarios/global/base.html' %}
+
+{% block title %}{{ page_title }}{% endblock title %}
+
+{% block content %}
+  
+    <form action= "{% url 'tccs' %}" method="post">
+        {% csrf_token %}
+        <div style="text-align: left;" class="container">
+            <h2> Cadastro de TCC </h2>
+            Autor <input name="nome_autores" class="form-control-sm" type="text">
+            Tema <input name="tema" class="form-control-sm" type="text">
+            Curso <input name="curso_graduacao" class="form-control-sm" type="text">
+            Ano <input name="ano" class="form-control-sm" type="text">
+            Descrição <input name="descricao" class="form-control-sm" type="text">
+            <button class="form-control-sm">Cadastrar</button>
+            <br> <br>
+            Anexe o PDF <input name="arquivo_tcc" class="form-control-sm" type="file">
+            <br>
+            
+        </div>
+       
+    </form>
+
+{% endblock content %}

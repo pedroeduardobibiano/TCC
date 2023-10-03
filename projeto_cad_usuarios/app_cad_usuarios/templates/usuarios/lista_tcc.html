@@ -1,0 +1,35 @@
+{% extends 'usuarios/global/base.html' %}
+
+{% block title %}{{ page_title }}{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <table class="table table-bordered table-striped"> 
+        <tr>
+            <th> ID </th>
+            <th> Nome </th>
+            <th> Ano </th>  
+            <th> Tema </th>   
+            <th> Descrição </th>
+            <th> Curso </th>
+            <th> Arquivo </th>   
+        </tr>
+        {% for TCC in tccs %}
+
+        <tr>
+            <td> {{TCC.id_tcc}} </td>
+            <td> {{TCC.nome_autores}} </td>
+            <td> {{TCC.ano}} </td>
+            <td> {{TCC.tema}} </td>
+            <td> {{TCC.descricao}} </td>
+            <td> {{TCC.curso_graduacao}} </td>
+            <td> {{TCC.arquivo_tcc }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+    <a href="{% url 'cria_tcc' %}">Cadastrar novo TCC</a>
+
+{% endblock content %}
